@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nueva Tarea</ion-title>
+    <ion-icon name="close" slot="end" size="large" class="ion-padding" (click)="cancel()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-item>
+      <ion-textarea placeholder="Escriba la nueva tarea"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Prioridad</ion-label>
+      <ion-select>
+        <ion-select-option value="Low">Baja</ion-select-option>
+        <ion-select-option value="middle">Media</ion-select-option>
+        <ion-select-option value="high">Alta</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-card>
+</ion-content>
