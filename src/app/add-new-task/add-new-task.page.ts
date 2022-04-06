@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-add-new-task',
@@ -15,7 +16,7 @@ export class AddNewTaskPage implements OnInit {
   taskCategory;
 
   taskObj;
-  constructor(public modalCtrl: ModalController) { }
+  constructor(public modalCtrl: ModalController, public todoService: TodoService) { }
 
   ngOnInit() {
   }
@@ -28,12 +29,19 @@ export class AddNewTaskPage implements OnInit {
     this.taskCategory = this.categories[index];
   }
 
-  addTask(){
+  async addTask(){
     this.taskObj = ({itemName: this.taskName,
                      itemDate: this.taskDate,
                      itemPriority: this.taskPriority,
                     itemCategory: this.taskCategory});
 
+    const uid = this.taskName + this.taskDate;
+
+    if(uid){
+      await this.todoService.addTask(uid, this.taskObj);
+    }else{
+      console.log('No se puede guardar vacio:(');
+    }
     this.cancel();
   }
 
